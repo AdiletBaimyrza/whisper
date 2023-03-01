@@ -1,6 +1,12 @@
-import whisper
+import speech_recognition as sr
 
-def transcribe_whisper(model, file_path):
-    model = whisper.load_model(model)
-    result = model.transcribe(file_path)
-    print(result["text"])
+def transcribe_google(file_path):
+    audio_data = sr.AudioFile(file_path)
+
+    with audio_data as source:
+        audio = sr.Recognizer().record(source)
+
+    result = sr.Recognizer().recognize_google(audio)
+
+
+    
